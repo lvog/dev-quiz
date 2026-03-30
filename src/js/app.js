@@ -1,6 +1,6 @@
 import "../styles/style.scss";
-import { quizServiсe } from "@js/services/quizService";
+import { quizModule } from "@js/modules/QuizModule";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // console.log(await quizServiсe());
+  quizModule.init();
 });

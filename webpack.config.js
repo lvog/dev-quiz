@@ -1,7 +1,3 @@
-const webpack = require("webpack");
-const dotenv = require("dotenv");
-
-const env = dotenv.config().parsed;
 const path = require("path");
 const fs = require("fs");
 
@@ -42,10 +38,6 @@ const getHtmlPlugins = () => {
 
 const getPlugins = ({ isDev, isProd }) =>
   [
-    // new webpack.DefinePlugin({
-    //   "process.env.API_KEY": JSON.stringify(env.API_KEY),
-    // }),
-
     // HTML
     ...getHtmlPlugins(),
 
@@ -119,6 +111,7 @@ const getDevServer = () => ({
     overlay: { warnings: false, errors: true },
   },
   static: { directory: PATHS.src },
+  watchFiles: ["src/**/*"],
 });
 
 const getModuleRules = ({ isDev, isProd }) => [
@@ -181,7 +174,12 @@ module.exports = (env = {}) => {
   return {
     mode: isDev ? "development" : "production",
 
-    cache: { type: "filesystem" },
+    // cache: { type: "filesystem" },
+    cache: false,
+
+    watchOptions: {
+      ignored: ["**/node_modules", "**/server"],
+    },
 
     entry: path.resolve(PATHS.js, "app.js"),
 
