@@ -1,11 +1,6 @@
 import "../styles/style.scss";
-import { getData } from "./utils/getData";
+import { quizServiсe } from "@js/services/quizService";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const data = await getData("http://localhost:3001/quiz");
-    console.log("DATA:", data);
-  } catch (error) {
-    console.error("FRONT ERROR:", error);
-  }
+  // console.log(await quizServiсe());
 });
