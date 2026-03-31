@@ -1,0 +1,27 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--badge-font-size);
+  font-weight: var(--badge-font-weight);
+  text-transform: uppercase;
+  padding: var(--badge-padding);
+  margin-bottom: 10px;
+  border-radius: var(--badge-border-radius);
+  overflow: hidden;
+
+  &.easy {
+    color: var(--color-dark-green);
+    background: var(--color-green);
+  }
+
+  &.medium {
+    color: var(--color-dark-green);
+    background: var(--color-green);
+  }
+
+  &.hard {
+    color: var(--color-dark-red);
+    background: var(--color-red);
+  }
+}

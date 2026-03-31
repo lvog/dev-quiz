@@ -1,9 +1,5 @@
 @use "abstracts/mixins" as m;
 
-form {
-  margin: 0 0 var(--base-margin-bottom);
-}
-
 input[type="text"],
 input[type="tel"],
 input[type="email"],

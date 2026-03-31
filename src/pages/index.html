@@ -11,15 +11,96 @@
         <h1>DevQuiz</h1>
         <p>Test your frontend knowledge</p>
         <i class="icon-cup"></i>
-        <i class="icon-clock"></i>
-        <div class="quiz-slider">
-          <div class="quiz-track"></div>
+
+        <div class="popup-holder">
+          <div class="popup">
+            <button class="popup-close"></button>
+            <div class="quiz">
+              <div class="quiz-nav">
+                <div class="quiz-info">
+                  <span class="quiz-num"
+                    >Question <span class="current">1</span> of
+                    <span class="total">10</span></span
+                  >
+                  <span class="quiz-time">
+                    <i class="icon-clock"></i>
+                    <span class="minutes">2</span>:<span class="seconds"
+                      >05</span
+                    >
+                  </span>
+                </div>
+                <div class="quiz-progress">
+                  <span class="quiz-progress-bar" style="width: 10%"></span>
+                </div>
+              </div>
+              <div class="quiz-slider">
+                <div class="quiz-slide">
+                  <form class="quiz-form" action="#">
+                    <div class="info-holder">
+                      <span class="badge easy">EASY</span>
+                      <strong class="h3">What is the CSS box model?</strong>
+                      <div class="answers-holder">
+                        <label class="answer">
+                          <input
+                            type="radio"
+                            name="question-cmmdjge3c00fdutgr2iw1oamh"
+                            value="Content, padding, border, and margin layers around every element"
+                          />
+                          <span class="custom-radio"></span>
+                          <span class="custom-label">
+                            Content, padding, border, and margin layers around
+                            every element
+                          </span>
+                        </label>
+                        <label class="answer">
+                          <input
+                            type="radio"
+                            name="question-cmmdjge3c00fdutgr2iw1oamh"
+                            value="A layout system for creating grid designs"
+                          />
+                          <span class="custom-radio"></span>
+                          <span class="custom-label">
+                            A layout system for creating grid designs
+                          </span>
+                        </label>
+                        <label class="answer"
+                          ><input
+                            type="radio"
+                            name="question-cmmdjge3c00fdutgr2iw1oamh"
+                            value="A method for centering elements horizontally"
+                          />
+                          <span class="custom-radio"></span>
+                          <span class="custom-label">
+                            A method for centering elements horizontally
+                          </span>
+                        </label>
+                        <label class="answer">
+                          <input
+                            type="radio"
+                            name="question-cmmdjge3c00fdutgr2iw1oamh"
+                            value="The hierarchy of CSS selectors"
+                          />
+                          <span class="custom-radio"></span>
+                          <span class="custom-label">
+                            The hierarchy of CSS selectors
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="btn-holder">
+                      <button class="btn" type="submit">Next</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <template id="quiz-template">
         <div class="quiz-slide">
           <form class="quiz-form" action="#">
-            <span class="tag"></span>
+            <span class="badge"></span>
             <strong class="h3"></strong>
             <div class="answers-holder"></div>
             <button class="btn" type="submit">Next</button>

@@ -15,7 +15,7 @@ class QuizUI {
 
     data.forEach((el) => {
       const template = this.template.content.cloneNode(true);
-      template.querySelector(".tag").textContent = el.difficulty;
+      template.querySelector(".badge").textContent = el.difficulty;
       template.querySelector(".h3").textContent = el.text;
 
       const answersHolder = template.querySelector(".answers-holder");
@@ -39,8 +39,8 @@ class QuizUI {
         customLabel.textContent = answer.text;
 
         label.appendChild(radio);
-        label.appendChild(customLabel);
         label.appendChild(customRadio);
+        label.appendChild(customLabel);
         fragment.appendChild(label);
       });
 

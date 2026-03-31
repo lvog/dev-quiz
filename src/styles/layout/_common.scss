@@ -1,1 +1,161 @@
+@use "abstracts/mixins" as m;
 
+.popup-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+  max-width: 600px;
+  padding: 40px 15px;
+  background: var(--color-white);
+  border-radius: var(--border-radius-md);
+  position: relative;
+  overflow: hidden;
+
+  &-close {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: 0;
+    background: transparent;
+
+    @include m.hover {
+      &::after,
+      &::before {
+        background: var(--color-dark-red);
+      }
+    }
+
+    &::after,
+    &::before {
+      @include m.transition(background);
+      content: "";
+      width: 14px;
+      height: 2px;
+      background: var(--color-black);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
+
+.quiz {
+  &-nav {
+    padding: 0 15px 20px;
+    margin: 0 -15px 20px;
+    border-bottom: 1px solid var(--color-light-gray);
+  }
+
+  &-info {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-gray);
+    margin-bottom: 10px;
+  }
+
+  &-time {
+    display: flex;
+    align-items: center;
+
+    .icon-clock {
+      font-size: 20px;
+      margin-right: 5px;
+    }
+  }
+
+  &-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    position: relative;
+  }
+
+  &-progress-bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--color-black);
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+
+    .info-holder {
+      flex: 1 0 auto;
+    }
+
+    .btn-holder {
+      text-align: center;
+    }
+  }
+
+  .h3 {
+    margin-bottom: 30px;
+  }
+
+  .answers-holder {
+    margin-bottom: 30px;
+  }
+}
+
+.answer {
+  display: block;
+  padding: 10px 15px 10px 35px;
+  margin-bottom: 10px;
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--border-radius-md);
+  position: relative;
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+
+    &:checked ~ .custom-radio {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .custom-radio {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 13px;
+    left: 15px;
+    border-radius: var(--border-radius-rounded);
+    overflow: hidden;
+    border: 1px solid var(--color-black);
+
+    &::before {
+      @include m.transition(opacity);
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--color-black);
+      border-radius: var(--border-radius-rounded);
+      opacity: 0;
+    }
+  }
+}

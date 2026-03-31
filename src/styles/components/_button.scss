@@ -2,6 +2,7 @@
 
 .btn {
   @include m.transition(background border-color);
+  min-width: 220px;
   display: inline-block;
   vertical-align: middle;
   font-family: var(--btn-font-family);

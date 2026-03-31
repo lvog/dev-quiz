@@ -1,4 +1,4 @@
-import { quizServiсe } from "@js/services/quizService";
+import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
 
 class QuizModule {
@@ -14,13 +14,13 @@ class QuizModule {
   }
 
   findElements() {
-    this.track = this.holder.querySelector(".slick-track");
+    this.track = this.holder.querySelector(".quiz-track");
     this.btn = this.holder.querySelector(".btn");
   }
 
   async search() {
     try {
-      const quizData = await quizServiсe();
+      const quizData = await quizService();
       quizUI.render(quizData);
     } catch (error) {
       console.log(error);
