@@ -1,5 +1,17 @@
-export const mapData = (quizData) => {
-  return quizData.data.map((quiz) => {
+const mapListData = (data) => {
+  return data.map((quiz) => {
+    const { id, title, description, difficulty } = quiz;
+    return {
+      id,
+      title,
+      description,
+      difficulty,
+    };
+  });
+};
+
+const mapQuizData = (data) => {
+  return data.map((quiz) => {
     const { id, text, type, difficulty, explanation, answers } = quiz;
     return {
       id,
@@ -10,4 +22,9 @@ export const mapData = (quizData) => {
       answers,
     };
   });
+};
+
+export const mapData = (quizData, list) => {
+  const data = quizData.data;
+  return list ? mapListData(data) : mapQuizData(data);
 };

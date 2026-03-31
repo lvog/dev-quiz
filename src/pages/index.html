@@ -7,11 +7,85 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="container">
-        <h1>DevQuiz</h1>
-        <p>Test your frontend knowledge</p>
-        <i class="icon-cup"></i>
-
+      <section class="quiz-section">
+        <div class="container">
+          <h1>DevQuiz</h1>
+          <p>Test your knowledge</p>
+          <ul class="quiz-list">
+            <li>
+              <div class="quiz-card">
+                <span class="badge medium">MEDIUM</span>
+                <h2>Python Data Structures</h2>
+                <p>
+                  Explore Python's built-in data structures including lists,
+                  tuples, dictionaries, sets, and their methods. Covers
+                  comprehensions, performance characteristics, and common
+                  patterns.
+                </p>
+                <button
+                  class="btn open-popup"
+                  data-id="cmmdjgdzb004autgrtn29hcbk"
+                >
+                  Open
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="quiz-card">
+                <span class="badge medium">MEDIUM</span>
+                <h2>Python Data Structures</h2>
+                <p>
+                  Explore Python's built-in data structures including lists,
+                  tuples, dictionaries, sets, and their methods. Covers
+                  comprehensions, performance characteristics, and common
+                  patterns.
+                </p>
+                <button
+                  class="btn open-popup"
+                  data-id="cmmdjgdzb004autgrtn29hcbk"
+                >
+                  Open
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="quiz-card">
+                <span class="badge medium">MEDIUM</span>
+                <h2>Python Data Structures</h2>
+                <p>
+                  Explore Python's built-in data structures including lists,
+                  tuples, dictionaries, sets, and their methods. Covers
+                  comprehensions, performance characteristics, and common
+                  patterns.
+                </p>
+                <button
+                  class="btn open-popup"
+                  data-id="cmmdjgdzb004autgrtn29hcbk"
+                >
+                  Open
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="quiz-card">
+                <span class="badge medium">MEDIUM</span>
+                <h2>Python Data Structures</h2>
+                <p>
+                  Explore Python's built-in data structures including lists,
+                  tuples, dictionaries, sets, and their methods. Covers
+                  comprehensions, performance characteristics, and common
+                  patterns.
+                </p>
+                <button
+                  class="btn open-popup"
+                  data-id="cmmdjgdzb004autgrtn29hcbk"
+                >
+                  Open
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div class="popup-holder">
           <div class="popup">
             <button class="popup-close"></button>
@@ -96,17 +170,31 @@
             </div>
           </div>
         </div>
-      </div>
-      <template id="quiz-template">
-        <div class="quiz-slide">
-          <form class="quiz-form" action="#">
-            <span class="badge"></span>
-            <strong class="h3"></strong>
-            <div class="answers-holder"></div>
-            <button class="btn" type="submit">Next</button>
-          </form>
-        </div>
-      </template>
+        <template id="quiz-list-template">
+          <li>
+            <div class="quiz-card">
+              <div class="quiz-card-body">
+                <span class="badge"></span>
+                <h2></h2>
+                <p></p>
+              </div>
+              <div class="quiz-card-footer">
+                <button class="btn open-popup">Open</button>
+              </div>
+            </div>
+          </li>
+        </template>
+        <template id="quiz-template">
+          <div class="quiz-slide">
+            <form class="quiz-form" action="#">
+              <span class="badge"></span>
+              <strong class="h3"></strong>
+              <div class="answers-holder"></div>
+              <button class="btn" type="submit">Next</button>
+            </form>
+          </div>
+        </template>
+      </section>
     </div>
   </body>
 </html>

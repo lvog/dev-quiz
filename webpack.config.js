@@ -1,3 +1,8 @@
+const webpack = require("webpack");
+const dotenv = require("dotenv");
+
+const env = dotenv.config().parsed;
+
 const path = require("path");
 const fs = require("fs");
 
@@ -38,6 +43,10 @@ const getHtmlPlugins = () => {
 
 const getPlugins = ({ isDev, isProd }) =>
   [
+    new webpack.DefinePlugin({
+      "process.env.API_KEY": JSON.stringify(env.API_KEY),
+    }),
+
     // HTML
     ...getHtmlPlugins(),
 
