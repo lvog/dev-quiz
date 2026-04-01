@@ -1,28 +1,24 @@
+import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
+
 import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
-import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
 import { popupModule } from "./PopupModule";
+import { carouselModule } from "./CarouselModule";
 
 class QuizModule {
   constructor(selector) {
     this.holder = document.querySelector(selector);
-    this.slider = null;
     this.url = API_LIST_URL;
     this.mode = "list";
   }
 
   init() {
     if (!this.holder) return;
-    this.findElements();
-    this.search();
-    this.handleEvents();
+    // this.search();
+    this.handleQuizSelect();
   }
 
-  findElements() {
-    this.slider = this.holder.querySelector(".quiz-slider");
-  }
-
-  handleEvents() {
+  handleQuizSelect() {
     this.holder.addEventListener("click", async (e) => {
       const btn = e.target.closest(".popup-open");
 
@@ -39,6 +35,8 @@ class QuizModule {
       this.mode = "quiz";
 
       await this.search(url);
+
+      carouselModule.init();
       popupModule.open();
     });
   }

@@ -4,20 +4,21 @@ class QuizUI {
     this.quizTemplate = this.holder.querySelector("#quiz-template");
     this.listTemplate = this.holder.querySelector("#quiz-list-template");
     this.listHolder = this.holder.querySelector(".quiz-list");
-    this.quizHolder = this.holder.querySelector(".quiz-slider");
+    this.quizHolder = this.holder.querySelector(".quiz-track");
   }
 
   renderList(data) {
-    // if (!this.listHolder || !this.listTemplate) return;
+    if (!this.listHolder || !this.listTemplate) return;
+
     console.log("here list");
 
     this.listHolder.innerHTML = "";
 
     data.forEach((el) => {
       const template = this.listTemplate.content.cloneNode(true);
+
       const badge = template.querySelector(".badge");
-      badge.classList.add(`${el.difficulty.toLowerCase()}`);
-      badge.textContent = el.difficulty;
+      this.setBadge(badge, el.difficulty);
 
       template.querySelector("h2").textContent = el.title;
       template.querySelector("p").textContent = el.description;
@@ -29,16 +30,18 @@ class QuizUI {
   }
 
   renderQuiz(data) {
-    // if (!this.quizHolder || !this.quizTemplate) return;
+    if (!this.quizHolder || !this.quizTemplate) return;
 
     console.log("here quiz");
 
     this.quizHolder.innerHTML = "";
-    console.log(data);
 
     data.forEach((el) => {
       const template = this.quizTemplate.content.cloneNode(true);
-      template.querySelector(".badge").textContent = el.difficulty;
+
+      const badge = template.querySelector(".badge");
+      this.setBadge(badge, el.difficulty);
+
       template.querySelector(".h3").textContent = el.text;
 
       const answersHolder = template.querySelector(".answers-holder");
@@ -70,6 +73,11 @@ class QuizUI {
       answersHolder.appendChild(fragment);
       this.quizHolder.appendChild(template);
     });
+  }
+
+  setBadge(badge, difficulty) {
+    badge.classList.add(difficulty.toLowerCase());
+    badge.textContent = difficulty;
   }
 }
 

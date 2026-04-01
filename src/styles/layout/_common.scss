@@ -141,11 +141,31 @@
     bottom: 0;
     left: 0;
     background: var(--color-black);
+
+    .is-animated & {
+      @include m.transition(width);
+    }
+  }
+
+  &-track {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+    .is-animated & {
+      @include m.transition(transform);
+    }
+  }
+
+  &-slide {
+    display: flex;
+    padding: 0 15px;
   }
 
   &-form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     .info-holder {
       flex: 1 0 auto;
