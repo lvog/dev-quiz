@@ -24,7 +24,7 @@ const mapQuizData = (data) => {
   });
 };
 
-export const mapData = (quizData, list) => {
+export const mapData = (quizData, mode) => {
   const data = quizData.data;
-  return list ? mapListData(data) : mapQuizData(data);
+  return mode === "list" ? mapListData(data) : mapQuizData(data);
 };

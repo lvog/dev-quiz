@@ -31,7 +31,10 @@ class QuizUI {
   renderQuiz(data) {
     // if (!this.quizHolder || !this.quizTemplate) return;
 
+    console.log("here quiz");
+
     this.quizHolder.innerHTML = "";
+    console.log(data);
 
     data.forEach((el) => {
       const template = this.quizTemplate.content.cloneNode(true);

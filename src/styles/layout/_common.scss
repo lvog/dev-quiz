@@ -1,14 +1,26 @@
 @use "abstracts/mixins" as m;
 
+.popup-active {
+  overflow: hidden;
+
+  .popup-holder {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 9999;
+  }
+}
+
 .popup-holder {
+  @include m.transition(opacity);
   display: flex;
-  display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
   inset: 0;
   padding: 15px;
   background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .popup {
