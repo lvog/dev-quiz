@@ -50,35 +50,39 @@ class QuizUI {
       template.querySelector(".h3").textContent = el.text;
 
       const answersHolder = template.querySelector(".answers-holder");
+      answersHolder.appendChild(this.renderLabel(el.answers, el.id));
 
-      const fragment = document.createDocumentFragment();
-
-      el.answers.forEach((answer) => {
-        const label = document.createElement("label");
-        label.classList.add("answer");
-
-        const radio = document.createElement("input");
-        radio.type = "radio";
-        radio.name = `question-${el.id}`;
-        radio.dataset.question = answer.id;
-        radio.value = answer.text;
-
-        const customRadio = document.createElement("span");
-        customRadio.classList.add("custom-radio");
-
-        const customLabel = document.createElement("span");
-        customLabel.classList.add("custom-label");
-        customLabel.textContent = answer.text;
-
-        label.appendChild(radio);
-        label.appendChild(customRadio);
-        label.appendChild(customLabel);
-        fragment.appendChild(label);
-      });
-
-      answersHolder.appendChild(fragment);
       this.quizHolder.appendChild(template);
     });
+  }
+
+  renderLabel(data, id) {
+    const fragment = document.createDocumentFragment();
+
+    data.forEach((answer) => {
+      const label = document.createElement("label");
+      label.classList.add("answer");
+
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = `question-${id}`;
+      radio.dataset.question = answer.id;
+      radio.value = answer.text;
+
+      const customRadio = document.createElement("span");
+      customRadio.classList.add("custom-radio");
+
+      const customLabel = document.createElement("span");
+      customLabel.classList.add("custom-label");
+      customLabel.textContent = answer.text;
+
+      label.appendChild(radio);
+      label.appendChild(customRadio);
+      label.appendChild(customLabel);
+      fragment.appendChild(label);
+    });
+
+    return fragment;
   }
 
   renderResult(data) {
@@ -98,8 +102,8 @@ class QuizUI {
     template.querySelector(".wrong-num").textContent = wrongNum;
 
     const answersList = template.querySelector(".answers-list");
-
     answersList.appendChild(this.renderAnswers(data));
+
     this.resultHolder.appendChild(template);
   }
 
