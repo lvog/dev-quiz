@@ -1,4 +1,5 @@
 import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
+import { state } from "@js/state";
 
 import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
@@ -44,6 +45,12 @@ class QuizModule {
   async search(url = this.url) {
     try {
       const quizData = await quizService(url, this.mode);
+
+      if (this.mode === "quiz") {
+        state.questions = quizData;
+      }
+
+      console.log(state.questions);
 
       this.mode === "list"
         ? quizUI.renderList(quizData)

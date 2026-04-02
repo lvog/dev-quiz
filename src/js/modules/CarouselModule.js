@@ -1,4 +1,6 @@
 import { quizEngine } from "@js/logic/QuizEngine";
+import { quizUI } from "@js/ui/quizUI";
+import { popupModule } from "./PopupModule";
 
 class CarouselModule {
   constructor(selector) {
@@ -85,7 +87,13 @@ class CarouselModule {
       };
       quizEngine.saveAnswer(answer);
 
-      if (this.current > this.total) return;
+      if (this.current > this.total) {
+        const results = quizEngine.getResults();
+        console.log(results);
+        quizUI.renderResult(results);
+        popupModule.close();
+        return;
+      }
 
       this.updateUI();
     });

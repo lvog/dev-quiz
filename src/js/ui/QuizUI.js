@@ -3,14 +3,17 @@ class QuizUI {
     this.holder = document.querySelector(selector);
     this.quizTemplate = this.holder.querySelector("#quiz-template");
     this.listTemplate = this.holder.querySelector("#quiz-list-template");
+    this.resultTemplate = this.holder.querySelector("#result-template");
+    this.answerTemplate = this.holder.querySelector("#answer-template");
     this.listHolder = this.holder.querySelector(".quiz-list");
     this.quizHolder = this.holder.querySelector(".quiz-track");
+    this.resultHolder = this.holder.querySelector(".main-info-block");
   }
 
   renderList(data) {
     if (!this.listHolder || !this.listTemplate) return;
 
-    console.log("here list");
+    // console.log("here list");
 
     this.listHolder.innerHTML = "";
 
@@ -32,7 +35,7 @@ class QuizUI {
   renderQuiz(data) {
     if (!this.quizHolder || !this.quizTemplate) return;
 
-    console.log("here quiz");
+    // console.log("here quiz");
 
     this.quizHolder.innerHTML = "";
 
@@ -76,6 +79,52 @@ class QuizUI {
       answersHolder.appendChild(fragment);
       this.quizHolder.appendChild(template);
     });
+  }
+
+  renderResult(data) {
+    if (!this.resultHolder || !this.resultTemplate) return;
+
+    this.resultHolder.innerHTML = "";
+
+    const questionNum = data.length;
+    const correctNum = data.filter((el) => el.isCorrect).length;
+    const wrongNum = data.filter((el) => !el.isCorrect).length;
+    const result = Math.ceil((correctNum / questionNum) * 100);
+
+    const template = this.resultTemplate.content.cloneNode(true);
+
+    template.querySelector(".result-num").textContent = `${result}%`;
+    template.querySelector(".correct-num").textContent = correctNum;
+    template.querySelector(".wrong-num").textContent = wrongNum;
+
+    const answersList = template.querySelector(".answers-list");
+
+    answersList.appendChild(this.renderAnswers(data));
+    this.resultHolder.appendChild(template);
+  }
+
+  renderAnswers(data) {
+    const fragment = document.createDocumentFragment();
+
+    data.forEach((el) => {
+      const template = this.answerTemplate.content.cloneNode(true);
+
+      template.querySelector(".question-text .text").textContent = el.question;
+
+      const answerHolder = template.querySelector(".answer-text");
+      el.isCorrect
+        ? answerHolder.classList.add("correct")
+        : answerHolder.classList.add("wrong");
+
+      const answerText = template.querySelector(".answer-text .text");
+      answerText.textContent = el.userAnswer;
+
+      template.querySelector(".explanation-text .text").textContent =
+        el.explanation;
+      fragment.appendChild(template);
+    });
+
+    return fragment;
   }
 
   setBadge(badge, difficulty) {

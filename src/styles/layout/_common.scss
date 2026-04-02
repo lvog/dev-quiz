@@ -316,9 +316,36 @@
   @include m.listReset;
 
   text-align: left;
+  counter-reset: my-counter;
+  margin-bottom: 30px;
 
   li {
-    margin-bottom: 30px;
+    counter-increment: my-counter;
+    padding-left: 30px;
+    padding: 15px 0 15px 40px;
+    border-bottom: 1px solid var(--color-light-gray);
+    position: relative;
+
+    &:last-child {
+      border: none;
+    }
+
+    &::before {
+      content: counter(list-item);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--color-black);
+      background: #f3f1f1;
+      position: absolute;
+      top: 15px;
+      left: 0;
+      border: 1px solid var(--color-black);
+      border-radius: var(--border-radius-rounded);
+    }
   }
 
   .question-text,
@@ -348,7 +375,9 @@
     }
 
     &.correct {
-      color: var(--color-green);
+      color: var(--color-dark-green);
+      background: var(--color-light-green);
+      border-color: var(--color-dark-green);
     }
   }
 }
