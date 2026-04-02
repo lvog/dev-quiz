@@ -12,16 +12,16 @@
 
   &.easy {
     color: var(--color-dark-green);
-    background: var(--color-green);
+    background: var(--color-light-green);
   }
 
   &.medium {
     color: var(--color-dark-yellow);
-    background: var(--color-yellow);
+    background: var(--color-light-yellow);
   }
 
   &.hard {
     color: var(--color-dark-red);
-    background: var(--color-red);
+    background: var(--color-light-red);
   }
 }

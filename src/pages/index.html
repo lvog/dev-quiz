@@ -5,36 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dev Quiz</title>
   </head>
-  <body>
+  <body class="popup-active">
     <div class="wrapper">
       <section class="quiz-section">
         <div class="container">
-          <h1>DevQuiz</h1>
-          <p>Test your knowledge</p>
-          <ul class="quiz-list">
-            <li>
-              <div class="quiz-card">
-                <div class="quiz-card-body">
-                  <span class="badge medium">MEDIUM</span>
-                  <h2>Python Data Structures</h2>
-                  <p>
-                    Explore Python's built-in data structures including lists,
-                    tuples, dictionaries, sets, and their methods. Covers
-                    comprehensions, performance characteristics, and common
-                    patterns.
-                  </p>
+          <div class="main-info-block">
+            <div class="main-block">
+              <h1>DevQuiz</h1>
+              <p>Test your knowledge</p>
+            </div>
+            <ul class="quiz-list">
+              <li>
+                <div class="quiz-card">
+                  <div class="quiz-card-body">
+                    <span class="badge medium">MEDIUM</span>
+                    <h2>Python Data Structures</h2>
+                    <p>
+                      Explore Python's built-in data structures including lists,
+                      tuples, dictionaries, sets, and their methods. Covers
+                      comprehensions, performance characteristics, and common
+                      patterns.
+                    </p>
+                  </div>
+                  <div class="quiz-card-footer">
+                    <button
+                      class="btn popup-open"
+                      data-id="cmmdjgdzb004autgrtn29hcbk"
+                    >
+                      Open
+                    </button>
+                  </div>
                 </div>
-                <div class="quiz-card-footer">
-                  <button
-                    class="btn popup-open"
-                    data-id="cmmdjgdzb004autgrtn29hcbk"
-                  >
-                    Open
-                  </button>
-                </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="popup-holder">
           <div class="popup">
@@ -69,6 +73,7 @@
                             <input
                               type="radio"
                               name="question-cmmdjge3c00fdutgr2iw1oamh"
+                              data-question="cmmdjge3c00fdutgr2iw1oamh"
                               value="Content, padding, border, and margin layers around every element"
                             />
                             <span class="custom-radio"></span>
@@ -81,6 +86,7 @@
                             <input
                               type="radio"
                               name="question-cmmdjge3c00fdutgr2iw1oamh"
+                              data-question="cmmdjge3c00fdutgr2iw1oamh"
                               value="A layout system for creating grid designs"
                             />
                             <span class="custom-radio"></span>
@@ -92,6 +98,7 @@
                             ><input
                               type="radio"
                               name="question-cmmdjge3c00fdutgr2iw1oamh"
+                              data-question="cmmdjge3c00fdutgr2iw1oamh"
                               value="A method for centering elements horizontally"
                             />
                             <span class="custom-radio"></span>
@@ -103,6 +110,7 @@
                             <input
                               type="radio"
                               name="question-cmmdjge3c00fdutgr2iw1oamh"
+                              data-question="cmmdjge3c00fdutgr2iw1oamh"
                               value="The hierarchy of CSS selectors"
                             />
                             <span class="custom-radio"></span>
@@ -149,6 +157,53 @@
               </div>
             </form>
           </div>
+        </template>
+        <template id="result-template">
+          <div class="result">
+            <div class="result-icon-block">
+              <i class="icon-cup"></i>
+            </div>
+            <h2>Quiz Complete</h2>
+            <span class="result-num"></span>
+            <ul class="result-list">
+              <li>
+                <div class="info-block">
+                  <span class="correct-num"></span>
+                  <span>Correct</span>
+                </div>
+              </li>
+              <li>
+                <div class="info-block">
+                  <span class="wrong-num"></span>
+                  <span>Wrong</span>
+                </div>
+              </li>
+              <li>
+                <div class="info-block">
+                  <span class="time-num">
+                    <span class="minutes"></span>:<span class="seconds"></span>
+                  </span>
+                  <span>Time</span>
+                </div>
+              </li>
+            </ul>
+            <ul class="answers-list"></ul>
+            <button class="btn btn-back">Back to quizes</button>
+          </div>
+        </template>
+        <template id="answer-template">
+          <li>
+            <span class="question-text"
+              ><b>Question:</b> <span class="text"></span
+            ></span>
+            <span class="answer-text"
+              ><b>Answer:</b> <span class="text"></span
+            ></span>
+            <span class="explanation-text"
+              ><b>Explanation:</b>
+              <span class="text"></span>
+            </span>
+          </li>
         </template>
       </section>
     </div>

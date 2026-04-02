@@ -8,6 +8,7 @@
   font-family: var(--btn-font-family);
   font-size: var(--btn-font-size);
   line-height: var(--btn-line-height);
+  text-transform: uppercase;
   padding: var(--btn-padding);
   color: var(--btn-color);
   background: var(--btn-background);
@@ -19,9 +20,5 @@
     color: var(--btn-color);
     background: var(--btn-hover-background);
     border-color: var(--btn-hover-border-color);
-  }
-
-  @include m.minMediaQuery(768px) {
-    text-transform: uppercase;
   }
 }

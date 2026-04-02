@@ -66,9 +66,12 @@
   }
 }
 
+.main-block {
+  text-align: center;
+}
+
 .quiz-list {
   @include m.listReset;
-
   display: flex;
   flex-wrap: wrap;
   margin: 0 -15px;
@@ -167,12 +170,27 @@
     flex-direction: column;
     width: 100%;
 
+    &.validate {
+      .btn-next {
+        opacity: 1;
+        cursor: pointer;
+        pointer-events: all;
+      }
+    }
+
     .info-holder {
       flex: 1 0 auto;
     }
 
     .btn-holder {
       text-align: center;
+    }
+
+    .btn-next {
+      @include m.transition(opacity);
+      opacity: 0.1;
+      cursor: none;
+      pointer-events: none;
     }
   }
 
@@ -225,6 +243,112 @@
       background: var(--color-black);
       border-radius: var(--border-radius-rounded);
       opacity: 0;
+    }
+  }
+}
+
+.result {
+  text-align: center;
+
+  &-icon-block {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    background: var(--color-light-gray);
+    margin: 0 auto 15px;
+    border-radius: var(--border-radius-rounded);
+    overflow: hidden;
+  }
+
+  &-num {
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+  &-list {
+    @include m.listReset;
+
+    max-width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto 30px;
+
+    li {
+      display: flex;
+      flex: 1;
+      padding: 5px;
+    }
+
+    .info-block {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--color-light-gray);
+      border-radius: var(--border-radius-md);
+    }
+
+    .correct-num,
+    .wrong-num,
+    .time-num {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .correct-num {
+      color: var(--color-green);
+    }
+
+    .wrong-num {
+      color: var(--color-red);
+    }
+
+    .time-num {
+      color: var(--color-gray);
+    }
+  }
+}
+
+.answers-list {
+  @include m.listReset;
+
+  text-align: left;
+
+  li {
+    margin-bottom: 30px;
+  }
+
+  .question-text,
+  .answer-text,
+  .explanation-text {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .question-text {
+    font-size: 20px;
+  }
+
+  .answer-text,
+  .explanation-text {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid var(--color-green);
+    border-radius: var(--border-radius-md);
+  }
+
+  .answer-text {
+    &.wrong {
+      color: var(--color-dark-red);
+      background: var(--color-light-red);
+      border-color: var(--color-dark-red);
+    }
+
+    &.correct {
+      color: var(--color-green);
     }
   }
 }

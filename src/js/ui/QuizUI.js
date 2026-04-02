@@ -39,6 +39,8 @@ class QuizUI {
     data.forEach((el) => {
       const template = this.quizTemplate.content.cloneNode(true);
 
+      template.querySelector(".quiz-form").id = el.id;
+
       const badge = template.querySelector(".badge");
       this.setBadge(badge, el.difficulty);
 
@@ -55,6 +57,7 @@ class QuizUI {
         const radio = document.createElement("input");
         radio.type = "radio";
         radio.name = `question-${el.id}`;
+        radio.dataset.question = answer.id;
         radio.value = answer.text;
 
         const customRadio = document.createElement("span");

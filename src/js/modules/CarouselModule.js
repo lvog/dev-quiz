@@ -1,3 +1,5 @@
+import { quizEngine } from "@js/logic/QuizEngine";
+
 class CarouselModule {
   constructor(selector) {
     this.holder = document.querySelector(selector);
@@ -61,11 +63,27 @@ class CarouselModule {
   handleEvents() {
     this.holder.addEventListener("click", (e) => {
       const btn = e.target.closest(".btn-next");
+      const input = e.target.closest("input");
+
+      if (input) {
+        quizEngine.validate();
+      }
+
       if (!btn) return;
       e.preventDefault();
 
       this.current++;
       this.transform = (this.current - 1) * this.slideWidth;
+
+      const form = btn.closest(".quiz-form");
+      const inputs = [...form.querySelectorAll("input")];
+      const activeInput = inputs.find((input) => input.checked);
+      const answer = {
+        questionId: form.id,
+        answerId: activeInput.dataset.question,
+        answerText: activeInput.value,
+      };
+      quizEngine.saveAnswer(answer);
 
       if (this.current > this.total) return;
 
