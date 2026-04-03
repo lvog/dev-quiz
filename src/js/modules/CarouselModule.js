@@ -1,6 +1,7 @@
 import { quizEngine } from "@js/logic/QuizEngine";
 import { quizUI } from "@js/ui/quizUI";
 import { popupModule } from "./PopupModule";
+import { timerModule } from "./TimerModule";
 
 class CarouselModule {
   constructor(selector) {
@@ -89,9 +90,11 @@ class CarouselModule {
 
       if (this.current > this.total) {
         const results = quizEngine.getResults();
-        console.log(results);
-        quizUI.renderResult(results);
+        // console.log(results);
+        const time = timerModule.getTime();
+        quizUI.renderResult(results, time);
         popupModule.close();
+        timerModule.clearTimer();
         return;
       }
 

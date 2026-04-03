@@ -5,6 +5,7 @@ import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
 import { popupModule } from "./PopupModule";
 import { carouselModule } from "./CarouselModule";
+import { timerModule } from "./TimerModule";
 
 class QuizModule {
   constructor(selector) {
@@ -37,6 +38,7 @@ class QuizModule {
 
       await this.search(url);
 
+      timerModule.setTimer();
       carouselModule.init();
       popupModule.open();
     });
@@ -50,7 +52,7 @@ class QuizModule {
         state.questions = quizData;
       }
 
-      console.log(state.questions);
+      // console.log(state.questions);
 
       this.mode === "list"
         ? quizUI.renderList(quizData)

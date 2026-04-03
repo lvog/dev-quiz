@@ -1,3 +1,5 @@
+import { timerModule } from "./TimerModule";
+
 class PopupModule {
   constructor(selector) {
     this.holder = document.querySelector(selector);
@@ -16,6 +18,7 @@ class PopupModule {
 
       if (isCloseBtn || !isPopup) {
         this.close();
+        timerModule.clearTimer();
         return;
       }
     });

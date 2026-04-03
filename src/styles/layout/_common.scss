@@ -120,12 +120,17 @@
   }
 
   &-time {
-    display: flex;
-    align-items: center;
+    min-width: 58px;
+    text-align: right;
+    padding-left: 22px;
+    position: relative;
 
     .icon-clock {
       font-size: 20px;
-      margin-right: 5px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
     }
   }
 

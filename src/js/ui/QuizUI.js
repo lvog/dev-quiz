@@ -85,7 +85,7 @@ class QuizUI {
     return fragment;
   }
 
-  renderResult(data) {
+  renderResult(data, time) {
     if (!this.resultHolder || !this.resultTemplate) return;
 
     this.resultHolder.innerHTML = "";
@@ -95,11 +95,17 @@ class QuizUI {
     const wrongNum = data.filter((el) => !el.isCorrect).length;
     const result = Math.ceil((correctNum / questionNum) * 100);
 
+    const { minutes, seconds } = time;
+
     const template = this.resultTemplate.content.cloneNode(true);
 
     template.querySelector(".result-num").textContent = `${result}%`;
     template.querySelector(".correct-num").textContent = correctNum;
     template.querySelector(".wrong-num").textContent = wrongNum;
+
+    template.querySelector(".time-num .minutes").textContent = minutes;
+
+    template.querySelector(".time-num .seconds").textContent = seconds;
 
     const answersList = template.querySelector(".answers-list");
     answersList.appendChild(this.renderAnswers(data));
