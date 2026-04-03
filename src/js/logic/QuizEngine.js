@@ -5,16 +5,6 @@ class QuizEngine {
     this.holder = document.querySelector(selector);
   }
 
-  validate() {
-    this.holder.addEventListener("change", (e) => {
-      const radio = e.target.closest("input");
-
-      if (!radio) return;
-
-      radio.closest("form").classList.add("validate");
-    });
-  }
-
   saveAnswer(value) {
     state.answers.push(value);
   }

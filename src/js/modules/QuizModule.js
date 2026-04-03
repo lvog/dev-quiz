@@ -36,6 +36,8 @@ class QuizModule {
 
       this.mode = "quiz";
 
+      state.resetAnswers();
+
       await this.search(url);
 
       timerModule.setTimer();

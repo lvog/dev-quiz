@@ -69,7 +69,7 @@ class CarouselModule {
       const input = e.target.closest("input");
 
       if (input) {
-        quizEngine.validate();
+        input.closest("form").classList.add("validate");
       }
 
       if (!btn) return;
@@ -81,11 +81,15 @@ class CarouselModule {
       const form = btn.closest(".quiz-form");
       const inputs = [...form.querySelectorAll("input")];
       const activeInput = inputs.find((input) => input.checked);
+
+      if (!activeInput) return;
+
       const answer = {
         questionId: form.id,
         answerId: activeInput.dataset.question,
         answerText: activeInput.value,
       };
+
       quizEngine.saveAnswer(answer);
 
       if (this.current > this.total) {
