@@ -1,6 +1,5 @@
+import { eventBus } from "@js/utils/eventBus";
 import { quizEngine } from "@js/logic/QuizEngine";
-import { quizUI } from "@js/ui/quizUI";
-import { popupModule } from "./PopupModule";
 import { timerModule } from "./TimerModule";
 
 class CarouselModule {
@@ -16,6 +15,12 @@ class CarouselModule {
     this.total = 0;
     this.current = 1;
     this.progress = 0;
+  }
+
+  listen() {
+    eventBus.on("quiz:start", () => {
+      this.init();
+    });
   }
 
   init() {
@@ -96,9 +101,9 @@ class CarouselModule {
         const results = quizEngine.getResults();
         // console.log(results);
         const time = timerModule.getTime();
-        quizUI.renderResult(results, time);
-        popupModule.close();
-        timerModule.clearTimer();
+
+        eventBus.emit("quiz:finished", { results, time });
+
         return;
       }
 

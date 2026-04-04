@@ -1,11 +1,9 @@
 import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
 import { state } from "@js/state";
+import { eventBus } from "../utils/eventBus";
 
 import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
-import { popupModule } from "./PopupModule";
-import { carouselModule } from "./CarouselModule";
-import { timerModule } from "./TimerModule";
 
 class QuizModule {
   constructor(selector) {
@@ -40,9 +38,7 @@ class QuizModule {
 
       await this.search(url);
 
-      timerModule.setTimer();
-      carouselModule.init();
-      popupModule.open();
+      eventBus.emit("quiz:start");
     });
   }
 

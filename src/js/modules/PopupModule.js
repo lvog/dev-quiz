@@ -1,3 +1,4 @@
+import { eventBus } from "@js/utils/eventBus";
 import { timerModule } from "./TimerModule";
 
 class PopupModule {
@@ -9,6 +10,12 @@ class PopupModule {
 
   init() {
     this.handleEvents();
+    this.listen();
+  }
+
+  listen() {
+    eventBus.on("quiz:start", () => this.open());
+    eventBus.on("quiz:finished", () => this.close());
   }
 
   handleEvents() {
@@ -18,7 +25,7 @@ class PopupModule {
 
       if (isCloseBtn || !isPopup) {
         this.close();
-        timerModule.clearTimer();
+        eventBus.emit("quiz:cancelled");
         return;
       }
     });

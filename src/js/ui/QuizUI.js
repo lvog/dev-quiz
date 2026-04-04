@@ -1,3 +1,5 @@
+import { eventBus } from "@js/utils/eventBus";
+
 class QuizUI {
   constructor(selector) {
     this.holder = document.querySelector(selector);
@@ -8,6 +10,12 @@ class QuizUI {
     this.listHolder = this.holder.querySelector(".quiz-list");
     this.quizHolder = this.holder.querySelector(".quiz-track");
     this.resultHolder = this.holder.querySelector(".main-info-block");
+  }
+
+  listen() {
+    eventBus.on("quiz:finished", ({ results, time }) => {
+      this.renderResult(results, time);
+    });
   }
 
   renderList(data) {

@@ -1,3 +1,5 @@
+import { eventBus } from "@js/utils/eventBus";
+
 class TimerModule {
   constructor(selector) {
     this.holder = document.querySelector(selector);
@@ -9,6 +11,12 @@ class TimerModule {
 
     this.startTime = null;
     this.timerId = null;
+  }
+
+  listen() {
+    eventBus.on("quiz:start", () => this.setTimer());
+    eventBus.on("quiz:cancelled", () => this.clearTimer());
+    eventBus.on("quiz:finished", () => this.clearTimer());
   }
 
   setTimer() {
