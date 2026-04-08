@@ -94,8 +94,25 @@
     flex: 1 0 auto;
   }
 
+  &-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
   &-footer {
     text-align: center;
+  }
+
+  .question {
+    display: flex;
+    align-items: center;
+    color: var(--color-gray);
+
+    i {
+      margin-right: 4px;
+    }
   }
 
   .btn {

@@ -12,4 +12,3 @@ document.addEventListener("DOMContentLoaded", () => {
   quizModule.init();
   popupModule.init();
 });
-фзз;
