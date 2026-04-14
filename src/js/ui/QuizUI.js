@@ -8,6 +8,7 @@ class QuizUI {
     this.listTemplate = this.holder.querySelector("#quiz-list-template");
     this.resultTemplate = this.holder.querySelector("#result-template");
     this.answerTemplate = this.holder.querySelector("#answer-template");
+    this.loaderTemplate = this.holder.querySelector("#loader-template");
     this.quizHolder = this.holder.querySelector(".quiz-track");
     this.mainHolder = this.holder.querySelector(".main-info-block");
   }
@@ -164,6 +165,16 @@ class QuizUI {
     });
 
     return fragment;
+  }
+
+  // --- Loader ---
+
+  renderLoader() {
+    if (!this.mainHolder || !this.loaderTemplate) return;
+
+    const template = this.loaderTemplate.content.cloneNode(true);
+
+    this.mainHolder.appendChild(template);
   }
 
   // --- Utils ---

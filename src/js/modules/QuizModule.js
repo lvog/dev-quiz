@@ -48,6 +48,8 @@ class QuizModule {
   async loadList() {
     this.mode = "list";
 
+    quizUI.renderLoader();
+
     const data = await this.search();
 
     quizUI.clearMainHolder();
@@ -68,6 +70,8 @@ class QuizModule {
     this.mode = "quiz";
 
     state.resetAnswers();
+
+    quizUI.renderLoader();
 
     const data = await this.search(url);
 

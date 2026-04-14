@@ -67,7 +67,9 @@
 }
 
 .main-block {
+  font-size: 20px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .quiz-list {
@@ -414,4 +416,14 @@
   padding: 50px 0;
   text-align: center;
   color: var(--color-dark-red);
+}
+
+.loader {
+  text-align: center;
+  padding: 50px 0;
+
+  svg {
+    max-width: 300px;
+    width: 100%;
+  }
 }
