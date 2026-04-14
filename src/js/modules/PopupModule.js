@@ -1,5 +1,4 @@
 import { eventBus } from "@js/utils/eventBus";
-import { timerModule } from "./TimerModule";
 
 class PopupModule {
   constructor(selector) {

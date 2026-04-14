@@ -3,7 +3,7 @@ export const quizes = [
     id: "cmmdjge3c00fcutgryuk42tht",
     title: "CSS & HTML Mastery",
     description:
-      "From flexbox to grid, selectors to specificity, test your front-end fundamentals. Covers modern CSS features, semantic HTML, accessibility, and responsive design patterns.",
+      "From flexbox togit push grid, selectors to specificity, test your front-end fundamentals. Covers modern CSS features, semantic HTML, accessibility, and responsive design patterns.",
     difficulty: "medium",
     questionCount: 10,
   },
@@ -81,3 +81,8 @@ export const quizes = [
     questionCount: 10,
   },
 ];
+
+export const info = {
+  title: "DevQuiz",
+  description: "Check your programming knowledge with quick quizzes.",
+};

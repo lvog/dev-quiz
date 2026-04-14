@@ -1,11 +1,13 @@
 const mapListData = (data) => {
+  console.log(data);
   return data.map((quiz) => {
-    const { id, title, description, difficulty } = quiz;
+    const { id, title, description, difficulty, questionCount } = quiz;
     return {
       id,
       title,
       description,
       difficulty,
+      questionCount,
     };
   });
 };

@@ -1,7 +1,7 @@
 import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
 import { state } from "@js/state";
-import { eventBus } from "../utils/eventBus";
-import { quizes } from "../data";
+import { eventBus } from "@js/utils/eventBus";
+import { quizes, info } from "@js/data";
 
 import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
@@ -15,8 +15,19 @@ class QuizModule {
 
   init() {
     if (!this.holder) return;
-    this.search();
+    this.loadList();
     this.handleQuizSelect();
+    this.handleBackBtn();
+  }
+
+  handleBackBtn() {
+    this.holder.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn-back");
+
+      if (!btn) return;
+
+      this.loadList();
+    });
   }
 
   handleQuizSelect() {
@@ -30,34 +41,44 @@ class QuizModule {
 
       if (!id) return;
 
-      const { apiUrl, answer } = API_QUIZ_CONFIG;
-      const url = `${apiUrl}${id}&${answer}`;
-
-      this.mode = "quiz";
-
-      state.resetAnswers();
-
-      await this.search(url);
-
-      eventBus.emit("quiz:start");
+      this.loadQuiz(id);
     });
+  }
+
+  async loadList() {
+    this.mode = "list";
+
+    // const data = await this.search();
+
+    quizUI.clearMainHolder();
+    quizUI.renderMainBlock(info);
+    quizUI.renderList(quizes);
+  }
+
+  async loadQuiz(id) {
+    const { apiUrl, answer } = API_QUIZ_CONFIG;
+    const url = `${apiUrl}${id}&${answer}`;
+
+    this.mode = "quiz";
+
+    state.resetAnswers();
+
+    const data = await this.search(url);
+
+    state.questions = data;
+
+    quizUI.renderQuiz(data);
+
+    eventBus.emit("quiz:start");
   }
 
   async search(url = this.url) {
     try {
-      const quizData = await quizService(url, this.mode);
-
-      if (this.mode === "quiz") {
-        state.questions = quizData;
-      }
-
-      // console.log(state.questions);
-
-      this.mode === "list"
-        ? quizUI.renderList(quizData)
-        : quizUI.renderQuiz(quizData);
+      const data = await quizService(url, this.mode);
+      return data;
     } catch (error) {
       console.log(error);
+      return null;
     }
   }
 }

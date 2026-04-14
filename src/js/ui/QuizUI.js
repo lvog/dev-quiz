@@ -3,13 +3,13 @@ import { eventBus } from "@js/utils/eventBus";
 class QuizUI {
   constructor(selector) {
     this.holder = document.querySelector(selector);
+    this.mainBlockTemplate = this.holder.querySelector("#main-block-template");
     this.quizTemplate = this.holder.querySelector("#quiz-template");
     this.listTemplate = this.holder.querySelector("#quiz-list-template");
     this.resultTemplate = this.holder.querySelector("#result-template");
     this.answerTemplate = this.holder.querySelector("#answer-template");
-    this.listHolder = this.holder.querySelector(".quiz-list");
     this.quizHolder = this.holder.querySelector(".quiz-track");
-    this.resultHolder = this.holder.querySelector(".main-info-block");
+    this.mainHolder = this.holder.querySelector(".main-info-block");
   }
 
   listen() {
@@ -18,12 +18,28 @@ class QuizUI {
     });
   }
 
+  // --- Main Content ---
+
+  renderMainBlock(data) {
+    if (!this.mainHolder || !this.mainBlockTemplate) return;
+
+    const { title, description } = data;
+
+    const template = this.mainBlockTemplate.content.cloneNode(true);
+
+    template.querySelector("h1").textContent = title;
+    template.querySelector("p").textContent = description;
+    this.mainHolder.appendChild(template);
+  }
+
   renderList(data) {
-    if (!this.listHolder || !this.listTemplate) return;
+    if (!this.mainHolder || !this.listTemplate) return;
 
     // console.log("here list");
 
-    this.listHolder.innerHTML = "";
+    const listHolder = document.createElement("ul");
+    listHolder.classList.add("quiz-list");
+    this.mainHolder.appendChild(listHolder);
 
     data.forEach((el) => {
       const template = this.listTemplate.content.cloneNode(true);
@@ -31,14 +47,17 @@ class QuizUI {
       const badge = template.querySelector(".badge");
       this.setBadge(badge, el.difficulty);
 
+      template.querySelector(".question .num").textContent = el.questionCount;
       template.querySelector("h2").textContent = el.title;
       template.querySelector("p").textContent = el.description;
 
       const btn = template.querySelector(".btn");
       btn.dataset.id = el.id;
-      this.listHolder.appendChild(template);
+      listHolder.appendChild(template);
     });
   }
+
+  // --- Quiz ---
 
   renderQuiz(data) {
     if (!this.quizHolder || !this.quizTemplate) return;
@@ -93,10 +112,12 @@ class QuizUI {
     return fragment;
   }
 
-  renderResult(data, time) {
-    if (!this.resultHolder || !this.resultTemplate) return;
+  // --- Result ---
 
-    this.resultHolder.innerHTML = "";
+  renderResult(data, time) {
+    if (!this.mainHolder || !this.resultTemplate) return;
+
+    this.clearMainHolder();
 
     const questionNum = data.length;
     const correctNum = data.filter((el) => el.isCorrect).length;
@@ -118,7 +139,7 @@ class QuizUI {
     const answersList = template.querySelector(".answers-list");
     answersList.appendChild(this.renderAnswers(data));
 
-    this.resultHolder.appendChild(template);
+    this.mainHolder.appendChild(template);
   }
 
   renderAnswers(data) {
@@ -143,6 +164,12 @@ class QuizUI {
     });
 
     return fragment;
+  }
+
+  // --- Utils ---
+
+  clearMainHolder() {
+    this.mainHolder.innerHTML = "";
   }
 
   setBadge(badge, difficulty) {

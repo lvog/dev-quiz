@@ -9,43 +9,7 @@
     <div class="wrapper">
       <section class="quiz-section">
         <div class="container">
-          <div class="main-info-block">
-            <div class="main-block">
-              <h1>DevQuiz</h1>
-              <p>Test your knowledge</p>
-            </div>
-            <ul class="quiz-list">
-              <li>
-                <div class="quiz-card">
-                  <div class="quiz-card-body">
-                    <div class="quiz-card-info">
-                      <span class="badge medium">MEDIUM</span>
-                      <span class="question">
-                        <i class="icon-question"></i>
-                        <span class="num">10</span>
-                      </span>
-                    </div>
-
-                    <h2>CSS & HTML Mastery</h2>
-                    <p>
-                      From flexbox to grid, selectors to specificity, test your
-                      front-end fundamentals. Covers modern CSS features,
-                      semantic HTML, accessibility, and responsive design
-                      patterns.
-                    </p>
-                  </div>
-                  <div class="quiz-card-footer">
-                    <button
-                      class="btn popup-open"
-                      data-id="cmmdjge3c00fcutgryuk42tht"
-                    >
-                      Open
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <div class="main-info-block"></div>
         </div>
         <div class="popup-holder">
           <div class="popup">
@@ -71,79 +35,28 @@
                 </div>
               </div>
               <div class="quiz-slider">
-                <div class="quiz-track">
-                  <div class="quiz-slide">
-                    <form class="quiz-form" action="#">
-                      <div class="info-holder">
-                        <span class="badge easy">EASY</span>
-                        <strong class="h3">What is the CSS box model?</strong>
-                        <div class="answers-holder">
-                          <label class="answer">
-                            <input
-                              type="radio"
-                              name="question-cmmdjge3c00fdutgr2iw1oamh"
-                              data-question="cmmdjge3c00fdutgr2iw1oamh"
-                              value="Content, padding, border, and margin layers around every element"
-                            />
-                            <span class="custom-radio"></span>
-                            <span class="custom-label">
-                              Content, padding, border, and margin layers around
-                              every element
-                            </span>
-                          </label>
-                          <label class="answer">
-                            <input
-                              type="radio"
-                              name="question-cmmdjge3c00fdutgr2iw1oamh"
-                              data-question="cmmdjge3c00fdutgr2iw1oamh"
-                              value="A layout system for creating grid designs"
-                            />
-                            <span class="custom-radio"></span>
-                            <span class="custom-label">
-                              A layout system for creating grid designs
-                            </span>
-                          </label>
-                          <label class="answer"
-                            ><input
-                              type="radio"
-                              name="question-cmmdjge3c00fdutgr2iw1oamh"
-                              data-question="cmmdjge3c00fdutgr2iw1oamh"
-                              value="A method for centering elements horizontally"
-                            />
-                            <span class="custom-radio"></span>
-                            <span class="custom-label">
-                              A method for centering elements horizontally
-                            </span>
-                          </label>
-                          <label class="answer">
-                            <input
-                              type="radio"
-                              name="question-cmmdjge3c00fdutgr2iw1oamh"
-                              data-question="cmmdjge3c00fdutgr2iw1oamh"
-                              value="The hierarchy of CSS selectors"
-                            />
-                            <span class="custom-radio"></span>
-                            <span class="custom-label">
-                              The hierarchy of CSS selectors
-                            </span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="btn-holder">
-                        <button class="btn btn-next" type="submit">Next</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                <div class="quiz-track"></div>
               </div>
             </div>
           </div>
         </div>
+        <template id="main-block-template">
+          <div class="main-block">
+            <h1></h1>
+            <p></p>
+          </div>
+        </template>
         <template id="quiz-list-template">
           <li>
             <div class="quiz-card">
               <div class="quiz-card-body">
-                <span class="badge"></span>
+                <div class="quiz-card-info">
+                  <span class="badge"></span>
+                  <span class="question">
+                    <i class="icon-question"></i>
+                    <span class="num"></span>
+                  </span>
+                </div>
                 <h2></h2>
                 <p></p>
               </div>
