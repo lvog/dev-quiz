@@ -1,7 +1,7 @@
 import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
 import { state } from "@js/state";
 import { eventBus } from "@js/utils/eventBus";
-import { quizes, info } from "@js/data";
+import { quizes, mainInfo, errorMessages } from "@js/data";
 
 import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
@@ -48,11 +48,17 @@ class QuizModule {
   async loadList() {
     this.mode = "list";
 
-    // const data = await this.search();
+    const data = await this.search();
 
     quizUI.clearMainHolder();
-    quizUI.renderMainBlock(info);
-    quizUI.renderList(quizes);
+    quizUI.renderMainBlock(mainInfo);
+
+    if (!data || !data.length) {
+      quizUI.renderError(errorMessages.list);
+      return;
+    }
+
+    quizUI.renderList(data);
   }
 
   async loadQuiz(id) {
@@ -64,6 +70,13 @@ class QuizModule {
     state.resetAnswers();
 
     const data = await this.search(url);
+
+    if (!data || !data.length) {
+      quizUI.clearMainHolder();
+      quizUI.renderMainBlock(mainInfo);
+      quizUI.renderError(errorMessages.quiz);
+      return;
+    }
 
     state.questions = data;
 

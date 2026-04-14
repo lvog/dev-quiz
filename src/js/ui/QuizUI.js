@@ -172,6 +172,13 @@ class QuizUI {
     this.mainHolder.innerHTML = "";
   }
 
+  renderError(message) {
+    const errorBlock = document.createElement("span");
+    errorBlock.classList.add("error-message");
+    errorBlock.textContent = message;
+    this.mainHolder.appendChild(errorBlock);
+  }
+
   setBadge(badge, difficulty) {
     badge.classList.add(difficulty.toLowerCase());
     badge.textContent = difficulty;
