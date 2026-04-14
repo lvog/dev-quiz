@@ -1,4 +1,4 @@
-const quizes = [
+export const quizes = [
   {
     id: "cmmdjge3c00fcutgryuk42tht",
     title: "CSS & HTML Mastery",

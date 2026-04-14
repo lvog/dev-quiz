@@ -15,12 +15,12 @@ class CarouselModule {
     this.total = 0;
     this.current = 1;
     this.progress = 0;
+    this.initialize = false;
   }
 
   listen() {
-    eventBus.on("quiz:start", () => {
-      this.init();
-    });
+    eventBus.on("quiz:start", () => this.init());
+    eventBus.on("quiz:cancelled", () => this.reset());
   }
 
   init() {
@@ -29,8 +29,12 @@ class CarouselModule {
     this.findElements();
     this.reset();
     this.updateLayout();
-    this.bindResize();
-    this.handleEvents();
+
+    if (!this.initialize) {
+      this.bindResize();
+      this.handleEvents();
+      this.initialize = true;
+    }
   }
 
   reset() {
@@ -99,7 +103,6 @@ class CarouselModule {
 
       if (this.current > this.total) {
         const results = quizEngine.getResults();
-        // console.log(results);
         const time = timerModule.getTime();
 
         eventBus.emit("quiz:finished", { results, time });

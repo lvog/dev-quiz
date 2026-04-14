@@ -1,6 +1,7 @@
 import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
 import { state } from "@js/state";
 import { eventBus } from "../utils/eventBus";
+import { quizes } from "../data";
 
 import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
@@ -14,7 +15,7 @@ class QuizModule {
 
   init() {
     if (!this.holder) return;
-    // this.search();
+    this.search();
     this.handleQuizSelect();
   }
 
