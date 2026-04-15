@@ -28,9 +28,13 @@ class QuizUI {
 
     const template = this.mainBlockTemplate.content.cloneNode(true);
 
+    const holder = template.querySelector(".main-block");
     template.querySelector("h1").textContent = title;
     template.querySelector("p").textContent = description;
     this.mainHolder.appendChild(template);
+    requestAnimationFrame(() => {
+      holder.classList.add("is-visible");
+    });
   }
 
   renderList(data) {
@@ -42,11 +46,14 @@ class QuizUI {
     listHolder.classList.add("quiz-list");
     this.mainHolder.appendChild(listHolder);
 
-    data.forEach((el) => {
+    data.forEach((el, index) => {
       const template = this.listTemplate.content.cloneNode(true);
 
       const badge = template.querySelector(".badge");
       this.setBadge(badge, el.difficulty);
+
+      const listElement = template.querySelector("li");
+      listElement.dataset.order = index;
 
       template.querySelector(".question .num").textContent = el.questionCount;
       template.querySelector("h2").textContent = el.title;
@@ -55,6 +62,10 @@ class QuizUI {
       const btn = template.querySelector(".btn");
       btn.dataset.id = el.id;
       listHolder.appendChild(template);
+    });
+
+    requestAnimationFrame(() => {
+      listHolder.classList.add("is-visible");
     });
   }
 
@@ -129,6 +140,8 @@ class QuizUI {
 
     const template = this.resultTemplate.content.cloneNode(true);
 
+    const holder = template.querySelector(".result");
+
     template.querySelector(".result-num").textContent = `${result}%`;
     template.querySelector(".correct-num").textContent = correctNum;
     template.querySelector(".wrong-num").textContent = wrongNum;
@@ -141,6 +154,10 @@ class QuizUI {
     answersList.appendChild(this.renderAnswers(data));
 
     this.mainHolder.appendChild(template);
+
+    requestAnimationFrame(() => {
+      holder.classList.add("is-visible");
+    });
   }
 
   renderAnswers(data) {
@@ -177,17 +194,23 @@ class QuizUI {
     this.mainHolder.appendChild(template);
   }
 
+  // --- Error ---
+
+  renderError(message) {
+    const errorBlock = document.createElement("span");
+    errorBlock.classList.add("error-message", "fade-in");
+    errorBlock.textContent = message;
+    this.mainHolder.appendChild(errorBlock);
+
+    requestAnimationFrame(() => {
+      errorBlock.classList.add("is-visible");
+    });
+  }
+
   // --- Utils ---
 
   clearMainHolder() {
     this.mainHolder.innerHTML = "";
-  }
-
-  renderError(message) {
-    const errorBlock = document.createElement("span");
-    errorBlock.classList.add("error-message");
-    errorBlock.textContent = message;
-    this.mainHolder.appendChild(errorBlock);
   }
 
   setBadge(badge, difficulty) {

@@ -26,6 +26,13 @@ class QuizModule {
 
       if (!btn) return;
 
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
       this.loadList();
     });
   }
