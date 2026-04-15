@@ -1,6 +1,7 @@
 import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
 import { state } from "@js/state";
 import { eventBus } from "@js/utils/eventBus";
+import { quizResultsStorage } from "@js/utils/quizResultsStorage";
 import { quizes, mainInfo, errorMessages } from "@js/data";
 
 import { quizService } from "@js/services/quizService";
@@ -62,7 +63,9 @@ class QuizModule {
     //   return;
     // }
 
-    quizUI.renderList(quizes);
+    const results = quizResultsStorage.getResults();
+
+    quizUI.renderList(quizes, results);
   }
 
   async loadQuiz(id) {
@@ -85,6 +88,7 @@ class QuizModule {
     }
 
     state.questions = data;
+    state.currentQuizId = id;
 
     quizUI.renderQuiz(data);
 

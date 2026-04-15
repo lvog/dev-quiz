@@ -37,7 +37,7 @@ class QuizUI {
     });
   }
 
-  renderList(data) {
+  renderList(data, results = {}) {
     if (!this.mainHolder || !this.listTemplate) return;
 
     // console.log("here list");
@@ -55,12 +55,33 @@ class QuizUI {
       const listElement = template.querySelector("li");
       listElement.dataset.order = index;
 
-      template.querySelector(".question .num").textContent = el.questionCount;
+      template.querySelector(".quiz-card-question .num").textContent =
+        el.questionCount;
       template.querySelector("h2").textContent = el.title;
       template.querySelector("p").textContent = el.description;
 
       const btn = template.querySelector(".btn");
       btn.dataset.id = el.id;
+
+      const result = results[el.id];
+
+      if (result) {
+        const holder = template.querySelector(".quiz-card-info");
+
+        const resultHolder = document.createElement("span");
+        resultHolder.classList.add("quiz-card-result");
+        holder.appendChild(resultHolder);
+
+        const resultIcon = document.createElement("i");
+        resultIcon.classList.add("icon-check");
+        resultHolder.appendChild(resultIcon);
+
+        const numHolder = document.createElement("span");
+        numHolder.classList.add(".num");
+        numHolder.textContent = `${result.correct}/${result.total}`;
+        resultHolder.appendChild(numHolder);
+      }
+
       listHolder.appendChild(template);
     });
 

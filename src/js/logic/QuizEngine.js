@@ -1,12 +1,33 @@
 import { state } from "@js/state";
+import { eventBus } from "@js/utils/eventBus";
+import { quizResultsStorage } from "@js/utils/quizResultsStorage";
 
 class QuizEngine {
   constructor(selector) {
     this.holder = document.querySelector(selector);
   }
 
+  listen() {
+    eventBus.on("quiz:finished", ({ results, time }) => {
+      this.getSummary(results);
+    });
+  }
+
   saveAnswer(value) {
     state.answers.push(value);
+  }
+
+  getSummary(results) {
+    const total = results.length;
+    const correct = results.filter((r) => r.isCorrect).length;
+    const quizId = state.currentQuizId;
+
+    if (quizId) {
+      quizResultsStorage.saveResult(quizId, {
+        correct,
+        total,
+      });
+    }
   }
 
   getResults() {
