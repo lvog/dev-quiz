@@ -26,12 +26,7 @@ class QuizModule {
 
       if (!btn) return;
 
-      requestAnimationFrame(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
+      window.scrollTo(0, 0);
 
       this.loadList();
     });

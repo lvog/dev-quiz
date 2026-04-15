@@ -1,0 +1,63 @@
+@use "abstracts/mixins" as m;
+
+.popup-holder {
+  @include m.transition(opacity);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+
+  .popup-active & {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 9999;
+  }
+}
+
+.popup {
+  max-width: 600px;
+  padding: 40px 15px;
+  background: var(--color-white);
+  border-radius: var(--border-radius-md);
+  position: relative;
+  overflow: hidden;
+
+  &-close {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: 0;
+    background: transparent;
+
+    @include m.hover {
+      &::after,
+      &::before {
+        background: var(--color-dark-red);
+      }
+    }
+
+    &::after,
+    &::before {
+      @include m.transition(background);
+      content: "";
+      width: 14px;
+      height: 2px;
+      background: var(--color-black);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}

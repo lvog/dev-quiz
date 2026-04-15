@@ -1,72 +1,6 @@
 @use "abstracts/mixins" as m;
 @use "abstracts/variables" as v;
 
-.popup-active {
-  overflow: hidden;
-
-  .popup-holder {
-    opacity: 1;
-    pointer-events: all;
-    z-index: 9999;
-  }
-}
-
-.popup-holder {
-  @include m.transition(opacity);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  inset: 0;
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.popup {
-  max-width: 600px;
-  padding: 40px 15px;
-  background: var(--color-white);
-  border-radius: var(--border-radius-md);
-  position: relative;
-  overflow: hidden;
-
-  &-close {
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    border: 0;
-    background: transparent;
-
-    @include m.hover {
-      &::after,
-      &::before {
-        background: var(--color-dark-red);
-      }
-    }
-
-    &::after,
-    &::before {
-      @include m.transition(background);
-      content: "";
-      width: 14px;
-      height: 2px;
-      background: var(--color-black);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    &::before {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-  }
-}
-
 .quiz-section {
   padding: 50px 0;
 }
@@ -103,11 +37,12 @@
 
     @include m.minMediaQuery(v.$breakpoint-tablet) {
       display: flex;
-      width: 33.33%;
+      width: 50%;
       padding: 0 10px 20px;
     }
 
     @include m.minMediaQuery(v.$breakpoint-desktop) {
+      width: 33.33%;
       padding: 0 15px 30px;
     }
   }
@@ -200,6 +135,10 @@
     .is-animated & {
       @include m.transition(width);
     }
+  }
+
+  &-slider {
+    margin: 0 -15px;
   }
 
   &-track {
@@ -326,7 +265,6 @@
 
   &-list {
     @include m.listReset;
-
     max-width: 400px;
     display: flex;
     flex-wrap: wrap;
@@ -370,7 +308,6 @@
 
 .answers-list {
   @include m.listReset;
-
   text-align: left;
   counter-reset: my-counter;
   margin-bottom: 30px;

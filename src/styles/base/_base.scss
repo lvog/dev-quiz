@@ -18,6 +18,10 @@ body {
   font-weight: var(--base-font-weight);
   color: var(--color-black);
   background: var(--color-white);
+
+  &.popup-active {
+    overflow: hidden;
+  }
 }
 
 h1,
@@ -87,31 +91,6 @@ h5,
 h6,
 .h6 {
   font-size: var(--h6-font-size);
-}
-
-ul:not([class]):not([id]) {
-  @include m.listReset;
-
-  li {
-    position: relative;
-    padding-left: 15px;
-    margin-bottom: 5px;
-
-    &::before {
-      content: "";
-      width: 5px;
-      height: 5px;
-      position: absolute;
-      top: 8px;
-      left: 0;
-      border-radius: var(--border-radius-rounded);
-      background: var(--color-black);
-    }
-  }
-}
-
-figure {
-  margin: 0;
 }
 
 img {
