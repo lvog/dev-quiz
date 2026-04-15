@@ -8,20 +8,12 @@ export const quizes = [
     questionCount: 10,
   },
   {
-    id: "cmmdjgdxl000eutgrl36rnydy",
-    title: "JavaScript Fundamentals",
+    id: "cmmi6y06e008rut02lavqy5wy",
+    title: "JavaScript Interview Questions",
     description:
-      "Test your knowledge of JavaScript basics including variables, data types, functions, and control flow. Perfect for beginners and those refreshing their JS foundations.",
-    difficulty: "easy",
-    questionCount: 10,
-  },
-  {
-    id: "cmmdjge3q00gqutgrm007b7mo",
-    title: "JavaScript, essentials everybody should know",
-    description:
-      "Put your JavaScript fundamentals to the test with questions on closures, scope, async patterns, and everyday gotchas.",
+      "Commonly asked JavaScript interview questions covering closures, prototypes, async patterns, and ES6+ features.",
     difficulty: "medium",
-    questionCount: 10,
+    questionCount: 4,
   },
   {
     id: "cmmdjge3q00gqutgrm007b7mo",
@@ -32,29 +24,20 @@ export const quizes = [
     questionCount: 10,
   },
   {
-    id: "cmmm4lxsx008zuts1ic1p5fxi",
-    title:
-      "Challenge Your React Skills: Test Your Knowledge of Concepts & Best Practices with This Quick Quiz",
+    id: "cmmvojoic009yeuut17sca66n",
+    title: "React Interview Questions",
     description:
-      "From hooks to performance optimization, see how well you understand modern React patterns and best practices.",
-    difficulty: "medium",
-    questionCount: 10,
-  },
-  {
-    id: "cmmdjgdyg001sutgr53v9lkfa",
-    title: "React Hooks Deep Dive",
-    description:
-      "Challenge yourself with advanced React Hooks concepts including useState, useEffect, useMemo, useCallback, and custom hooks. Designed for intermediate to advanced React developers.",
+      "Advanced React questions on hooks, component lifecycle, state management, performance optimization, and patterns.",
     difficulty: "hard",
-    questionCount: 8,
+    questionCount: 4,
   },
   {
-    id: "cmmm4lz5d007yutt6xlypev2q",
-    title: "Test Your Node.js Knowledge: Modules, Package Management, and More",
+    id: "cmmonk45p0000iauts6hgpgkn",
+    title: "React Interview Questions",
     description:
-      "Challenge your understanding of Node.js modules, npm, the event loop, streams, and server-side JavaScript patterns that every backend developer should know.",
-    difficulty: "medium",
-    questionCount: 10,
+      "Advanced React questions on hooks, component lifecycle, state management, performance optimization, and patterns.",
+    difficulty: "hard",
+    questionCount: 4,
   },
   {
     id: "cmmdjgdyw002wutgr9zg4q004",
@@ -65,19 +48,51 @@ export const quizes = [
     questionCount: 10,
   },
   {
-    id: "cmmm4lw690001utqxeyki6lzd",
-    title: "Top Common Interview PHP Questions",
+    id: "cmmonnld9001ziaut7ffrlwb6",
+    title: "SQL Interview Questions",
     description:
-      "Test your PHP knowledge with these commonly asked interview questions covering core concepts, OOP, and practical coding scenarios.",
+      "Common SQL interview questions covering joins, subqueries, indexing, normalization, and query optimization.",
     difficulty: "medium",
-    questionCount: 10,
+    questionCount: 3,
   },
   {
-    id: "cmmm4lxo10001uts1mdisdwfb",
-    title: "10 Simple Laravel Interview Questions",
+    id: "cmmonnedx001liaut2hby0j7c",
+    title: "MongoDB Fundamentals",
     description:
-      "Test your foundational Laravel knowledge with these beginner-friendly interview questions covering routing, Eloquent, Blade, and more.",
+      "MongoDB concepts including document model, CRUD operations, aggregation pipeline, indexing, and schema design.",
+    difficulty: "medium",
+    questionCount: 3,
+  },
+  {
+    id: "cmmnfiduw0000l1ut0x5mz5sv",
+    title: "Python Basics",
+    description:
+      "Foundational Python concepts including data types, control flow, list comprehensions, and built-in functions.",
     difficulty: "easy",
+    questionCount: 4,
+  },
+  {
+    id: "cmmdjgdzb004autgrtn29hcbk",
+    title: "Python Data Structures",
+    description:
+      "Explore Python's built-in data structures including lists, tuples, dictionaries, sets, and their methods. Covers comprehensions, performance characteristics, and common patterns.",
+    difficulty: "medium",
+    questionCount: 8,
+  },
+  {
+    id: "cmmdjge4400i4utgrb2gfwxi5",
+    title: "DevOps & Cloud Essentials",
+    description:
+      "From CI/CD pipelines to cloud architecture, Kubernetes to Infrastructure as Code. Test your knowledge of modern DevOps practices and cloud computing fundamentals.",
+    difficulty: "hard",
+    questionCount: 8,
+  },
+  {
+    id: "cmmdjge6400p2utgrhw1g32e7",
+    title: "Cybersecurity Fundamentals",
+    description:
+      "Test your knowledge of cybersecurity principles including encryption, authentication, common attacks, network security, and best practices for protecting digital assets.",
+    difficulty: "hard",
     questionCount: 10,
   },
 ];

@@ -50,17 +50,17 @@ class QuizModule {
 
     quizUI.renderLoader();
 
-    const data = await this.search();
+    // const data = await this.search();
 
     quizUI.clearMainHolder();
     quizUI.renderMainBlock(mainInfo);
 
-    if (!data || !data.length) {
-      quizUI.renderError(errorMessages.list);
-      return;
-    }
+    // if (!data || !data.length) {
+    //   quizUI.renderError(errorMessages.list);
+    //   return;
+    // }
 
-    quizUI.renderList(data);
+    quizUI.renderList(quizes);
   }
 
   async loadQuiz(id) {
