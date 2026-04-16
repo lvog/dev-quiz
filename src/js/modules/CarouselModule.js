@@ -15,7 +15,7 @@ class CarouselModule {
     this.total = 0;
     this.current = 1;
     this.progress = 0;
-    this.initialize = false;
+    this.eventsBound = false;
   }
 
   listen() {
@@ -30,10 +30,10 @@ class CarouselModule {
     this.reset();
     this.updateLayout();
 
-    if (!this.initialize) {
+    if (!this.eventsBound) {
       this.bindResize();
-      this.handleEvents();
-      this.initialize = true;
+      this.bindEvents();
+      this.eventsBound = true;
     }
   }
 
@@ -72,7 +72,7 @@ class CarouselModule {
     this.progressBar.style.width = `${this.progress}%`;
   }
 
-  handleEvents() {
+  bindEvents() {
     this.holder.addEventListener("click", (e) => {
       const btn = e.target.closest(".btn-next");
       const input = e.target.closest("input");
@@ -95,7 +95,7 @@ class CarouselModule {
 
       const answer = {
         questionId: form.id,
-        answerId: activeInput.dataset.question,
+        answerId: activeInput.dataset.answerId,
         answerText: activeInput.value,
       };
 

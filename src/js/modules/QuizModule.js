@@ -1,6 +1,6 @@
 import { API_QUIZ_CONFIG } from "@js/config";
 import { state } from "@js/state";
-import { quizes, mainInfo, errorMessage } from "@js/data";
+import { quizzes, mainInfo, errorMessage } from "@js/data";
 
 import { eventBus } from "@js/utils/eventBus";
 import { quizResultsStorage } from "@js/utils/quizResultsStorage";
@@ -26,7 +26,7 @@ class QuizModule {
 
       if (!btn) return;
 
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0 });
 
       this.loadList();
     });
@@ -53,7 +53,7 @@ class QuizModule {
 
     const results = quizResultsStorage.getResults();
 
-    quizUI.renderList(quizes, results);
+    quizUI.renderList(quizzes, results);
   }
 
   async loadQuiz(id) {
@@ -64,7 +64,7 @@ class QuizModule {
     quizUI.removeLoader();
     quizUI.renderLoader();
 
-    const data = await this.search(url);
+    const data = await this.fetchQuiz(url);
 
     if (!data || !data.length) {
       quizUI.clearMainHolder();
@@ -83,12 +83,12 @@ class QuizModule {
     eventBus.emit("quiz:start");
   }
 
-  async search(url) {
+  async fetchQuiz(url) {
     try {
       const data = await quizService(url);
       return data;
     } catch (error) {
-      console.log(error);
+      console.error("Failed to fetch quiz:", error);
       return null;
     }
   }

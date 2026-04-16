@@ -48,7 +48,7 @@ class QuizUI {
       const template = this.listTemplate.content.cloneNode(true);
 
       const badge = template.querySelector(".badge");
-      this.setBadge(badge, el.difficulty);
+      this.renderBadge(badge, el.difficulty);
 
       const listElement = template.querySelector("li");
       listElement.dataset.order = index;
@@ -101,18 +101,18 @@ class QuizUI {
       template.querySelector(".quiz-form").id = el.id;
 
       const badge = template.querySelector(".badge");
-      this.setBadge(badge, el.difficulty);
+      this.renderBadge(badge, el.difficulty);
 
       template.querySelector(".h3").textContent = el.text;
 
       const answersHolder = template.querySelector(".answers-holder");
-      answersHolder.appendChild(this.renderLabel(el.answers, el.id));
+      answersHolder.appendChild(this.renderAnswersList(el.answers, el.id));
 
       this.quizHolder.appendChild(template);
     });
   }
 
-  renderLabel(data, id) {
+  renderAnswersList(data, id) {
     const fragment = document.createDocumentFragment();
 
     data.forEach((answer) => {
@@ -122,7 +122,7 @@ class QuizUI {
       const radio = document.createElement("input");
       radio.type = "radio";
       radio.name = `question-${id}`;
-      radio.dataset.question = answer.id;
+      radio.dataset.answerId = answer.id;
       radio.value = answer.text;
 
       const customRadio = document.createElement("span");
@@ -254,7 +254,7 @@ class QuizUI {
     this.mainHolder.innerHTML = "";
   }
 
-  setBadge(badge, difficulty) {
+  renderBadge(badge, difficulty) {
     badge.classList.add(difficulty.toLowerCase());
     badge.textContent = difficulty;
   }
