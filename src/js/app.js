@@ -1,10 +1,16 @@
 import "../styles/style.scss";
+
+import { quizUI } from "@js/ui/quizUI";
+
 import { quizModule } from "@js/modules/QuizModule";
 import { popupModule } from "@js/modules/PopupModule";
-import { quizUI } from "./ui/quizUI";
-import { timerModule } from "./modules/TimerModule";
-import { carouselModule } from "./modules/CarouselModule";
-import { quizEngine } from "./logic/QuizEngine";
+import { timerModule } from "@js/modules/TimerModule";
+import { carouselModule } from "@js/modules/CarouselModule";
+
+import { quizEngine } from "@js/logic/QuizEngine";
+
+import { setYear } from "@js/utils/setYear";
+import { scrollAnimation } from "@js/utils/ScrollAnimation";
 
 document.addEventListener("DOMContentLoaded", () => {
   quizUI.listen();
@@ -13,4 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   carouselModule.listen();
   quizModule.init();
   popupModule.init();
+  setYear();
+  scrollAnimation.init();
 });

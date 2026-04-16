@@ -1,7 +1,7 @@
 @use "abstracts/mixins" as m;
 
 .btn {
-  @include m.transition(background border-color);
+  @include m.transition(background);
   min-width: 220px;
   display: inline-block;
   vertical-align: middle;
@@ -12,13 +12,12 @@
   padding: var(--btn-padding);
   color: var(--btn-color);
   background: var(--btn-background);
-  border: var(--btn-border);
+  border: none;
   border-radius: var(--btn-border-radius);
   cursor: pointer;
 
   @include m.hover {
     color: var(--btn-color);
     background: var(--btn-hover-background);
-    border-color: var(--btn-hover-border-color);
   }
 }

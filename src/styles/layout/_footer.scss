@@ -1,0 +1,21 @@
+@use "abstracts/mixins" as m;
+
+.footer {
+  font-size: 16px;
+  text-align: center;
+}
+
+.footer-holder {
+  padding: 20px 0;
+  border-top: 1px solid var(--color-light-gray);
+}
+
+.copyright {
+  a {
+    color: var(--color-black);
+
+    @include m.hover {
+      color: var(--color-gray);
+    }
+  }
+}

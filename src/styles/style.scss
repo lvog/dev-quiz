@@ -1,21 +1,23 @@
 // 1. Variables, mixins and helpers
 @use "abstracts/variables";
 
-// 2. Vendors
+// 2. Vendors and utilities
 @use "vendors/normalize";
 @use "vendors/icomoon";
+@use "utilities/animations";
 
 // 3. Base styles
 @use "base/fonts";
 @use "base/base";
-@use "base/form";
 
 // 4. Layout sections
-@use "layout/header";
 @use "layout/common";
 @use "layout/footer";
 
 // 5. Components
+@use "components/loader";
 @use "components/popup";
 @use "components/button";
 @use "components/badge";
+@use "components/social-networks";
+@use "components/error-block";

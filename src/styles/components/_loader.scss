@@ -1,0 +1,15 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 15px;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 9999;
+
+  svg {
+    max-width: 300px;
+    width: 100%;
+  }
+}

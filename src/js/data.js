@@ -102,7 +102,5 @@ export const mainInfo = {
   description: "Check your programming knowledge with quick quizzes.",
 };
 
-export const errorMessages = {
-  list: "Sorry, we couldn’t load the quizzes. Please try again later.",
-  quiz: "Sorry, we couldn’t load the quiz. Please try again later.",
-};
+export const errorMessage =
+  "Sorry, we couldn’t load the quiz. Please try again later.";

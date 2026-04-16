@@ -1,0 +1,12 @@
+.error-block {
+  display: block;
+  font-size: 30px;
+  padding: 50px 0;
+  text-align: center;
+  color: var(--color-dark-red);
+
+  .message {
+    display: block;
+    margin-bottom: 30px;
+  }
+}

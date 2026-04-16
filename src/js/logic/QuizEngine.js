@@ -36,21 +36,13 @@ class QuizEngine {
         (answer) => answer.questionId === question.id,
       );
 
-      // console.log("userAnswer", userAnswer);
-
       const correctAnswer = question.answers.find((answer) => answer.isCorrect);
-
-      // console.log("correctAnswer", correctAnswer);
 
       const selectedAnswer = question.answers.find(
         (answer) => answer.id === userAnswer?.answerId,
       );
 
-      // console.log("selectedAnswer", selectedAnswer);
-
       const isCorrect = selectedAnswer?.id === correctAnswer?.id;
-
-      // console.log("isCorrect", isCorrect);
 
       return {
         question: question.text,

@@ -40,8 +40,6 @@ class QuizUI {
   renderList(data, results = {}) {
     if (!this.mainHolder || !this.listTemplate) return;
 
-    // console.log("here list");
-
     const listHolder = document.createElement("ul");
     listHolder.classList.add("quiz-list");
     this.mainHolder.appendChild(listHolder);
@@ -77,7 +75,7 @@ class QuizUI {
         resultHolder.appendChild(resultIcon);
 
         const numHolder = document.createElement("span");
-        numHolder.classList.add(".num");
+        numHolder.classList.add("num");
         numHolder.textContent = `${result.correct}/${result.total}`;
         resultHolder.appendChild(numHolder);
       }
@@ -94,8 +92,6 @@ class QuizUI {
 
   renderQuiz(data) {
     if (!this.quizHolder || !this.quizTemplate) return;
-
-    // console.log("here quiz");
 
     this.quizHolder.innerHTML = "";
 
@@ -208,19 +204,43 @@ class QuizUI {
   // --- Loader ---
 
   renderLoader() {
-    if (!this.mainHolder || !this.loaderTemplate) return;
+    if (!this.loaderTemplate) return;
 
     const template = this.loaderTemplate.content.cloneNode(true);
 
-    this.mainHolder.appendChild(template);
+    const holder = template.querySelector(".loader");
+
+    document.body.appendChild(template);
+
+    requestAnimationFrame(() => {
+      holder.classList.add("is-visible");
+    });
+  }
+
+  removeLoader() {
+    const loader = document.querySelector(".loader");
+
+    if (!loader) return;
+
+    loader.remove();
   }
 
   // --- Error ---
 
   renderError(message) {
-    const errorBlock = document.createElement("span");
-    errorBlock.classList.add("error-message", "fade-in");
-    errorBlock.textContent = message;
+    const errorBlock = document.createElement("div");
+    errorBlock.classList.add("error-block", "fade-in");
+
+    const messageHolder = document.createElement("span");
+    messageHolder.classList.add("message");
+    messageHolder.textContent = message;
+    errorBlock.appendChild(messageHolder);
+
+    const btn = document.createElement("button");
+    btn.classList.add("btn", "btn-back");
+    btn.textContent = "Back to quizzes";
+    errorBlock.appendChild(btn);
+
     this.mainHolder.appendChild(errorBlock);
 
     requestAnimationFrame(() => {

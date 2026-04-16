@@ -1,8 +1,9 @@
-import { API_LIST_URL, API_QUIZ_CONFIG } from "@js/config";
+import { API_QUIZ_CONFIG } from "@js/config";
 import { state } from "@js/state";
+import { quizes, mainInfo, errorMessage } from "@js/data";
+
 import { eventBus } from "@js/utils/eventBus";
 import { quizResultsStorage } from "@js/utils/quizResultsStorage";
-import { quizes, mainInfo, errorMessages } from "@js/data";
 
 import { quizService } from "@js/services/quizService";
 import { quizUI } from "@js/ui/quizUI";
@@ -10,8 +11,6 @@ import { quizUI } from "@js/ui/quizUI";
 class QuizModule {
   constructor(selector) {
     this.holder = document.querySelector(selector);
-    this.url = API_LIST_URL;
-    this.mode = "list";
   }
 
   init() {
@@ -48,20 +47,9 @@ class QuizModule {
     });
   }
 
-  async loadList() {
-    this.mode = "list";
-
-    quizUI.renderLoader();
-
-    // const data = await this.search();
-
+  loadList() {
     quizUI.clearMainHolder();
     quizUI.renderMainBlock(mainInfo);
-
-    // if (!data || !data.length) {
-    //   quizUI.renderError(errorMessages.list);
-    //   return;
-    // }
 
     const results = quizResultsStorage.getResults();
 
@@ -72,32 +60,32 @@ class QuizModule {
     const { apiUrl, answer } = API_QUIZ_CONFIG;
     const url = `${apiUrl}${id}&${answer}`;
 
-    this.mode = "quiz";
-
     state.resetAnswers();
-
+    quizUI.removeLoader();
     quizUI.renderLoader();
 
     const data = await this.search(url);
 
     if (!data || !data.length) {
       quizUI.clearMainHolder();
+      quizUI.removeLoader();
       quizUI.renderMainBlock(mainInfo);
-      quizUI.renderError(errorMessages.quiz);
+      quizUI.renderError(errorMessage);
       return;
     }
 
     state.questions = data;
     state.currentQuizId = id;
 
+    quizUI.removeLoader();
     quizUI.renderQuiz(data);
 
     eventBus.emit("quiz:start");
   }
 
-  async search(url = this.url) {
+  async search(url) {
     try {
-      const data = await quizService(url, this.mode);
+      const data = await quizService(url);
       return data;
     } catch (error) {
       console.log(error);

@@ -108,7 +108,14 @@ a {
   }
 }
 
+button {
+  cursor: pointer;
+}
+
 .wrapper {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
 }
@@ -117,4 +124,8 @@ a {
   max-width: var(--container-max-width);
   padding: var(--container-padding);
   margin: 0 auto;
+}
+
+.main {
+  flex: 1 0 auto;
 }
