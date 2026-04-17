@@ -1,4 +1,5 @@
 import { eventBus } from "@js/utils/eventBus";
+import { shuffleArray } from "@js/utils/shuffleArray";
 
 class QuizUI {
   constructor(selector) {
@@ -115,7 +116,9 @@ class QuizUI {
   renderAnswersList(data, id) {
     const fragment = document.createDocumentFragment();
 
-    data.forEach((answer) => {
+    const shuffledAnswers = shuffleArray(data);
+
+    shuffledAnswers.forEach((answer) => {
       const label = document.createElement("label");
       label.classList.add("answer");
 
@@ -165,7 +168,8 @@ class QuizUI {
 
     template.querySelector(".time-num .minutes").textContent = minutes;
 
-    template.querySelector(".time-num .seconds").textContent = seconds;
+    template.querySelector(".time-num .seconds").textContent =
+      seconds < 10 ? `0${seconds}` : seconds;
 
     const answersList = template.querySelector(".answers-list");
     answersList.appendChild(this.renderAnswers(data));
