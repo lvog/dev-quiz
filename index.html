@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevQuiz</title>
+    <meta
+      name="description"
+      content="Test your programming knowledge with interactive quizzes on DevQuiz."
+    />
+    <meta name="author" content="Levchuk Oleg" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="images/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="DevQuiz" />
+    <link rel="manifest" href="images/site.webmanifest" />
+  <link href="css/main.min.css" rel="stylesheet"></head>
+  <body>
+    <div class="wrapper">
+      <main class="main">
+        <section class="quiz-section">
+          <div class="container">
+            <div class="main-info-block">
+              <h1>DevQuiz</h1>
+            </div>
+          </div>
+          <div class="popup-holder">
+            <div class="popup">
+              <button class="popup-close" aria-label="Close popup"></button>
+              <div class="quiz">
+                <div class="quiz-nav">
+                  <div class="quiz-info">
+                    <span class="quiz-num"
+                      >Question <span class="current">1</span> of
+                      <span class="total">10</span></span
+                    >
+                    <div class="quiz-time">
+                      <i class="icon-clock"></i>
+                      <div class="time-holder">
+                        <span class="minutes">0</span>:<span class="seconds"
+                          >00</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="quiz-progress">
+                    <span class="quiz-progress-bar"></span>
+                  </div>
+                </div>
+                <div class="quiz-slider">
+                  <div class="quiz-track"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <template id="loader-template">
+            <div class="loader fade-in">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="300px"
+                height="300px"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="xMidYMid"
+              >
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="0"
+                  fill="none"
+                  stroke="#1d0e0b"
+                  strokeWidth="1"
+                >
+                  <animate
+                    attributeName="r"
+                    repeatCount="indefinite"
+                    dur="2s"
+                    values="0;40"
+                    keyTimes="0;1"
+                    keySplines="0 0.2 0.8 1"
+                    calcMode="spline"
+                    begin="0s"
+                  ></animate>
+                  <animate
+                    attributeName="opacity"
+                    repeatCount="indefinite"
+                    dur="2s"
+                    values="1;0"
+                    keyTimes="0;1"
+                    keySplines="0.2 0 0.8 1"
+                    calcMode="spline"
+                    begin="0s"
+                  ></animate>
+                </circle>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="0"
+                  fill="none"
+                  stroke="#774023"
+                  strokeWidth="1"
+                >
+                  <animate
+                    attributeName="r"
+                    repeatCount="indefinite"
+                    dur="2s"
+                    values="0;40"
+                    keyTimes="0;1"
+                    keySplines="0 0.2 0.8 1"
+                    calcMode="spline"
+                    begin="-1s"
+                  ></animate>
+                  <animate
+                    attributeName="opacity"
+                    repeatCount="indefinite"
+                    dur="2s"
+                    values="1;0"
+                    keyTimes="0;1"
+                    keySplines="0.2 0 0.8 1"
+                    calcMode="spline"
+                    begin="-1s"
+                  ></animate>
+                </circle>
+              </svg>
+            </div>
+          </template>
+          <template id="main-block-template">
+            <div class="main-block fade-in">
+              <h1></h1>
+              <p></p>
+            </div>
+          </template>
+          <template id="quiz-list-template">
+            <li class="move-in">
+              <div class="quiz-card">
+                <div class="quiz-card-body">
+                  <div class="quiz-card-info">
+                    <div class="quiz-card-notes">
+                      <span class="badge"></span>
+                      <span class="quiz-card-question">
+                        <i class="icon-question"></i>
+                        <span class="num"></span>
+                      </span>
+                    </div>
+                  </div>
+                  <h2></h2>
+                  <p></p>
+                </div>
+                <div class="quiz-card-footer">
+                  <button class="btn popup-open">Open</button>
+                </div>
+              </div>
+            </li>
+          </template>
+          <template id="quiz-template">
+            <div class="quiz-slide">
+              <form class="quiz-form" action="#">
+                <div class="info-holder">
+                  <span class="badge"></span>
+                  <strong class="h3"></strong>
+                  <div class="answers-holder"></div>
+                </div>
+                <div class="btn-holder">
+                  <button class="btn btn-next" type="submit">Next</button>
+                </div>
+              </form>
+            </div>
+          </template>
+          <template id="result-template">
+            <div class="result fade-in">
+              <div class="result-icon-block">
+                <i class="icon-cup"></i>
+              </div>
+              <h2>Quiz Complete</h2>
+              <span class="result-num"></span>
+              <ul class="result-list">
+                <li>
+                  <div class="info-block">
+                    <span class="correct-num"></span>
+                    <span>Correct</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="info-block">
+                    <span class="wrong-num"></span>
+                    <span>Wrong</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="info-block">
+                    <span class="time-num">
+                      <span class="minutes"></span>:<span
+                        class="seconds"
+                      ></span>
+                    </span>
+                    <span>Time</span>
+                  </div>
+                </li>
+              </ul>
+              <ol class="answers-list"></ol>
+              <button class="btn btn-back">Back to quizzes</button>
+            </div>
+          </template>
+          <template id="answer-template">
+            <li>
+              <span class="question-text"
+                ><b>Question:</b> <span class="text"></span
+              ></span>
+              <span class="answer-text"
+                ><b>Answer:</b> <span class="text"></span
+              ></span>
+              <span class="explanation-text"
+                ><b>Explanation:</b>
+                <span class="text"></span>
+              </span>
+            </li>
+          </template>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-holder animate fade-in">
+            <ul class="social-networks">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/oleg-levchuk-2098b2b7"
+                  target="_blank"
+                  ><i class="icon-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/lvog" target="_blank"
+                  ><i class="icon-github"></i
+                ></a>
+              </li>
+            </ul>
+            <span class="copyright"
+              ><strong>DevQuiz</strong> © <span class="year"></span> • Created
+              by
+              <a href="https://lvog.github.io" target="_blank">Levchuk Oleg</a>.
+              All rights reserved.</span
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+  <script defer src="js/main.js"></script></body>
+</html>
